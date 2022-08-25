@@ -1,10 +1,12 @@
 # Practical-Application-Assignment-11.1-What-Drives-the-Price-of-a-Car-
-The purpose of this analysis is to provide recommendations to a client -- a used car dealership -- as to what consumers value in a used car and to assist in <br />
-better inventory management <br />
+
+The purpose of this analysis is to provide recommendations to a client -- a used car dealership -- as to what consumers value in a used car and 
+to assist in better inventory management <br />
 
 <h1> ** Practical Application Assignment: What drives the price of a car? ** </h1>
  
 
+Data Summary: <br />
 The data set contained 18 columns of which only 4 were numerical (id, price, year and odometer) and had 426K rows of data. Many columns had <br />
 missing data. <br />
 
