@@ -99,6 +99,9 @@ b) MAD is resistant to outliers while mean is not.<br />
 5)  Details about the important factors have been shown in the Jupyter notebook along with details around whether it is have a postive of negative ot the <br />
   median price of car.<br />
 6) Prediction intervals of the models were not checked explicitly as the objective was to find the important factors that drive the price.<br />
+7) The names of the coefficients have been selcted to fecilitate the reading off the aggregation without a special need to explain. Details are all there in Juypter
+ notebook if needed.
+ 
 <p>&nbsp;</p>
 
 Inventory tuning was done with an objective of keeping track of smallest number of units which would have a significant impact on Revenue($ sales) <br />
