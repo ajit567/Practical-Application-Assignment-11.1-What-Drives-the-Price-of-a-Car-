@@ -69,6 +69,8 @@ A total of 6 models were created. Two were from statsmodel OLS and the rest from
   as well (p value<0.05). Hence implying usage for predicting factors that impac price of a car <br />
 
 3) Sklearn model:  Ridge regression with OHC, small regularization and no Scaling. This model was made using the transformed target regressor with logarithmic  <br /> transformation (1og to the base 10) of the the target variable. Log 10 was taken due to the large scale of data which "e" would have taken more units to cover. <br />
+Meaning that the mean of the "Y" data would not have become close to medain with "e" as it did with log to base 10. This is important assumption (Median~Mean) <br />
+for the "Log linear regression model". <br />
 This model gave insights into different coefficients without scaling and did not show any coefficients with high variability. Coeffcients follow the expected  <br />  correlating trend (age and odometer mileage come as negatively correlated)<br />
 
 4)SKC Ridge with OHC, small regularization and Scaling.This changed the coefficients of the numerical features - odometer got more significant than age. <br />
