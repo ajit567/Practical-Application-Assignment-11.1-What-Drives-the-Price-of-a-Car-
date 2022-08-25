@@ -45,29 +45,35 @@ All the coefficients predicted by the mdoel were statistically significant. (hav
 2)Second model: OLS second model was created with log transformation of target variables all the coefficients predicted were statistically significant as well (p value<0.05) <br />
 3) Sklearn model:  Ridge regression with OHC, small regularization and no Scaling. This model was made using the transformed target regressor with logarithmic transformation of the <br />
 the target variable. This model gave insights into different coefficients without scaling as well and did not show any coefficients with high variability. <br />
-4)SKC Ridge with OHC, small regularization and Scaling <br />
-5) Ridge with OHC with scaling and regularization after cross validation <br />
-6) Lasso with OHC, scaling and regularization after Cross validation- to see if it reduces the number of coefficients in the model <br />
+Coeffcients follow the expected correlating trend (age and odometer mileage come as negatively correlated)<br />
 
-A general comment: <br />
-1) Model accuracy: The model had an r2 of 0.55. As we are mainly interested in understanding the relationships between the variables, R-squared values does ### not negate the importance <br />
- of any significant variables. Even with a low R-squared with statistically significant P-values will identify relationships and coefficients will have the same interpretation.  <br />
+4)SKC Ridge with OHC, small regularization and Scaling.This changed the coefficients of the numerical features - odometer got more significant than age. <br />
+
+5) Ridge with OHC with scaling and regularization after cross validation. This showed that none of the selected features were susceptible to variability <br />
+ introduced by pertubation of data<br />
+
+6) Lasso with OHC, scaling and regularization after Cross validation- to see if it reduces the number of coefficients in the model as Lasso given sparse  <br />
+  coefficients. This howvever did not turn out to be the case and all the features previously selected were kept.
+
+A general comments about model: <br />
+
+1) Model accuracy: The model had an r2 of 0.55. As we are mainly interested in understanding the relationships between the variables, R-squared values does does <br />not negate the importance of any significant variables. Even with a low R-squared with statistically significant P-values will identify relationships and <br /> coefficients will have the same interpretation.  <br />
 There is no additional cause to discount these findings.  <br />
-2) Coefficients: With log transformation the coefficients used in the model have the following interpretation. Therefore <br />
-100 × ([10^𝛽1] − 1) is the percent change in 𝑦 associated with a one-unit increase in the given X when all other X's are held constant. This is needs to interpret for model without scaling and log <br />
-i.e model 3 above which has no scaling. Example in model 3 age has a coefficient of -0.000001 while cylinders_category_cylinders_6_8_10_12 a coefficient of 0.124391.  <br />
-This would mean -0.000230258 % change in price of car per odometer units or ~ 23% reduction in median for 100K units of odometer while there is a 33% increase in median price if the cylinder happens to be <br />
+
+2) Coefficients: With log transformation and the use of a "Log linear model_ the coefficients used in the model have a different  interpretation. It can be read as <br /> 100 × ([10^𝛽1] − 1) percent change in 𝑦 associated with a one-unit increase in the given X when all other X's in the model are held constant. This however o<br /> limited to be interpreted for model without scaling and using log transformation and OHC whihc is model 3. AS an Example in model 3 age has a coefficient of -0.000001<br />  while cylinders_category_cylinders_6_8_10_12 a coefficient of 0.124391.  <br />
+
+This would mean -0.000230258 % change in price of car per odometer mileage increase or ~ 23% reduction in median for 100K units of odometer while there is a 33% increase in<br /> median price if the cylinder happens to be <br />
 6,8,10 or 12.  <br />
 
 3) Above evaluation metric: Median absolute error was chosen due to 
-a) for log transformations median makes sense
-b) MAD is resistant to outliers.
+a) for log transformations use of  median as opposed to mean makes sense. Log transform bring mean and median close together
+b) MAD is resistant to outliers while mean is not.
 
 4) Models were created using SKlearn guidelines. 
 
 <p>&nbsp;</p>
 
 4) Inventory tuning:
-There are around 26 models in the dataset. This model recommends keeping an eye out on the inventory of:
+There are around 26K models in the dataset. This model recommends keeping an eye out on the inventory of:
 a) 10 models for the >50K price point cars as they constitute 90% of sales
-b) ~1800 models on the <50k price point category as they constitute 90% of the sales
+b) ~1800 models on the <50k price point category as they constitute 90% of the sales for that category
