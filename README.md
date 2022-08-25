@@ -20,9 +20,11 @@ a)Unit sales wise 97% of the sales were coming from the <50K USD price point car
 b)Majority of the revenue of the >50K USD price point category were coming from just 10 models <br />
 <p>&nbsp;</p>
 It was decided to focus on cars in data with <50K price points as it had more sale units to come up with a prediction on what drives car prices. <br />
-The other filtering that was applied was to select all cars older than 30 years as only a few cars in the data set were above that age (~14k cars age more than <br />
-30 years in the data set) and cars usually have a useful life of around 12 years (30 years is 2x that). <br />
-Cars from the year 2022 formed a very low proportion of dataset (133 units) and were also dropped to facilitate creation of a new column called age which <br />
+The other filtering that was applied was to select all cars less than 30 years. This was done as:
+  a)Only a few cars in the data set were above that age (~14k cars age more than 30 years in the data set) <br />
+  b)and cars usually have a useful life of around 12 years (30 years is more than2x that). <br />
+  
+Also cars from the year 2022 formed a very low proportion of dataset (133 units) and were also dropped to facilitate creation of a new column called age which <br />
 measured the age of car with respect to 2022. <br />
 
 <p>&nbsp;</p>
