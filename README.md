@@ -7,8 +7,8 @@ to assist in better inventory management <br />
  
 
 Data Summary: <br />
-The data set contained 18 columns of which only 4 were numerical (id, price, year and odometer) and had 426K rows of data. Many columns had <br />
-missing data. <br />
+The data set contained 18 columns of which only 4 were numerical (id, price, year and odometer) and had 426K rows of data. 
+Many columns had missing data. <br />
 
 <p>&nbsp;</p>
 
