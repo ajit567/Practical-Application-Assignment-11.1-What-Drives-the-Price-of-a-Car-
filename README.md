@@ -1,25 +1,29 @@
 # Practical-Application-Assignment-11.1-What-Drives-the-Price-of-a-Car-
 The purpose of this analysis is to provide recommendations to a client -- a used car dealership -- as to what consumers value in a used car and to assist in <br />
 better inventory management <br />
-<h1>
-**Practical Application Assignment: What drives the price of a car? **</h1>
 
+<h1> **Practical Application Assignment: What drives the price of a car? ** </h1>
+ 
 
 The data set contained 18 columns of which only 4 were numerical (id, price, year and odometer) and had 426K rows of data. Many columns had <br />
 missing data. <br />
+
 <p>&nbsp;</p>
+
 Following methodology was used for analyzing the data: <br />
 
 1) Slicing the data based on total unit sales per price point bucket and age of the car. <br />
 Plots were created for slicing the data by cars age, odometer miles and price points. Following was observed. <br />
 a)Unit sales wise 97% of the sales were coming from the <50K USD price point cars while revenue wise they only represent 20%. <br />
 b)Majority of the revenue of the >50K USD price point category were coming from just 10 models <br />
-I decided to focus on <50K slice of data as it had more data to come up with a prediction on what drives car prices. <br />
+It was decided to focus on <50K slice of data as it had more sale units to come up with a prediction on what drives car prices. <br />
 The other filtering that was applied was to select all cars older than 30 years as only a few cars in the data set were above that age (~14k cars age more than <br />
 30 years in the data set) and cars usually have a useful life of around 12 years (30 years is 2x that). <br />
 Cars from the year 2022 formed a very low proportion of dataset (133 units) and were also dropped to facilitate creation of a new column called age which <br />
 measured the age of car with respect to 2022. <br />
+
 <p>&nbsp;</p>
+
 2) Data preparation: <br />
  4 major activities were done as a part of data preparation: <br />
  1) Filling the missing data: <br />
@@ -31,26 +35,26 @@ measured the age of car with respect to 2022. <br />
 has a mean above overall mean price, it was checked after filling the missing data if this changed overall mean price for electric or any other fuel type within <br />
 that category with repsect to the overall mean. <br />
 
- 2) Creating a region index to account for possible price variation by region. <br />
- A list of top 500 cars that we sold was created with the same options like 6 cylinders, gas fuel automatic transmission etc and the unit price calculated based on <br /> sales. These options were slected based on the highest sales for their respective category.<br />
+ 2) Creating a region index to account for price variation by region. <br />
+ A list of top 500 cars that were sold was created with the same options like 6 cylinders, gas fuel automatic transmission etc and the unit price calculated based on <br /> sales. These options were slected based on the highest sales for their respective category.<br />
  This unit price was normalized to come up with an index that acts as a proxy for regional price variation. This can definitely be done better by replacing it <br />
  with the Used Cars and Trucks in U.S. City Average data from FRED. I could not find a time efficient way to put all of cities/regions in the data together <br />
  so did not  pursue that course <br />
 
   3) Grouping the number of options provided in each feature to reduce the impact of dimensionality while doing One hot encoding (OHC). There were a total of <br />
-  4) 112K  possible combinations <br />
-  of options and these were combined and reduced to 12 to reduce variability in data by aggregation. Details may be found in the Jupiter notebook. <br />
+    112K  possible combinationsof options and these were combined and reduced to 12 to reduce variability in data by aggregation. Details may be found in <br />
+    the Jupiter notebook. <br />
    
   4) Columns with high VIF/multicollinearity were identified and the issue addressed. This was done for use of features with Stats OLS models. <br />
+    Sklearn models selected the ones with reduced VIF and did not change the features even with cross validation and Lasso.
 <p>&nbsp;</p>
 3) Modelling <br />
 
 A total of 6 models were created. Two were from statsmodel OLS and the rest from Sklearn. A summary is provided: <br />
 1) First model: OLS first model was created with scaling and dummy variables to quickly see the results. The model however was seen to be predicting <br />
-2) negative prices and hence <br />
-log transformation of the target variable was done. A constant was not put as that might serve as an initial fixed cost which was thougth of as inaccurate <br />
-as it acts a fixed cost for all cars and we have car sales going very low in the data set. <br />
-All the coefficients predicted by the mdoel were statistically significant. (having p_value<0.05)<br />
+ negative prices and hence log transformation of the target variable was done. A constant was not put as that might serve as an initial fixed cost which was  <br />
+ thougth of as inaccurate as it acts a fixed cost for all cars and we have car sales going very low in the data set. <br />
+  All the coefficients predicted by the mdoel were statistically significant. (having p_value<0.05)<br />
 
 2)Second model: OLS second model was created with log transformation of target variables all the coefficients predicted were statistically significant <br />
   as well (p value<0.05). Hence implying usage for predicting factors that impac price of a car <br />
@@ -64,8 +68,7 @@ The change was due to scaling. <br />
 5) Ridge with OHC with scaling and regularization after cross validation. This showed that none of the selected features were susceptible to variability <br />
  introduced by pertubation of data<br />
 
-6) Lasso with OHC, scaling and regularization after Cross validation- to see if it reduces the number of coefficients in the model as Lasso given sparse  <br />
-  coefficients. This howvever did not turn out to be the case and all the features previously selected were kept.<br />
+6) Lasso with OHC, scaling and regularization after Cross validation- This model was run to see if it reduces the number of coefficients in the model as Lasso gives sparse coefficients. This howvever did not turn out to be the case and all the features previously selected were kept.<br />
 
 A general comments about model: <br />
 
@@ -83,11 +86,12 @@ b) MAD is resistant to outliers while mean is not.<br />
 4) Models were created using SKlearn guidelines.<br />
 
 5)  Details about the important factors have been shown in the Jupyter notebook along with details around whether it is have a postive of negative ot the <br />
-6)   median price of car.<br />
-
+  median price of car.<br />
+6) Prediction intervals of the models were not checked explicitly as the objective was to find the important factors that drive the price.<br />
 <p>&nbsp;</p>
 
-4) Inventory tuning was done from an objective of keeping track of smallest number of units which have a significant impact in Revenue($ sales) <br />
+Inventory tuning was done with an objective of keeping track of smallest number of units which would have a significant impact on Revenue($ sales) <br />
+ 
 There were around 26K models in the dataset. This model recommends keeping an eye out on the inventory of:<br />
 a) 10 models for the >50K price point cars as they constitute 90% of sales<br />
 b) ~1800 models on the <50k price point category as they constitute 90% of the sales for that category<br />
